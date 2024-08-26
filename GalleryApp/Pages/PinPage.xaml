@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:GalleryApp.Pages"
+             x:Class="GalleryApp.Pages.PinPage"
+             Title="PinPage"
+             NavigationPage.HasNavigationBar="False"
+             Loaded="ContentPage_Loaded">
+    <VerticalStackLayout 
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Label 
+            Text="Галерея"
+            FontSize="Title"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label x:Name="pinLabel" Text="Введите четырёхзначный код" Margin="10" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Entry x:Name="pinOne" HorizontalTextAlignment="Center" Keyboard="Numeric" MaxLength="1" TextChanged="pinEntry_TextChanged" />
+            <Entry x:Name="pinTwo" HorizontalTextAlignment="Center" Keyboard="Numeric" MaxLength="1" TextChanged="pinEntry_TextChanged"/>
+            <Entry x:Name="pinThree" HorizontalTextAlignment="Center" Keyboard="Numeric" MaxLength="1" TextChanged="pinEntry_TextChanged"/>
+            <Entry x:Name="pinFour" HorizontalTextAlignment="Center" Keyboard="Numeric" MaxLength="1" TextChanged="pinEntry_TextChanged" />
+        </StackLayout>
+
+        <Button 
+            Text="OK"
+            IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=IsPinValid}"
+            Clicked="OkButton_Clicked" 
+            Margin="10"/>
+    </VerticalStackLayout>
+</ContentPage>

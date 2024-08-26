@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GalleryApp.Pages.GalleryPage"
+             Title="GalleryPage"
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label 
+            Text="Галерея"
+            FontSize="Title"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="10"/>
+
+        <ListView 
+            x:Name="listView" 
+            Grid.Row="1" 
+            ItemsSource="{Binding Pictures}"
+            HasUnevenRows="True"
+            CachingStrategy="RecycleElement"
+            ItemSelected="listView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        ImageSource="{Binding FullName}"
+                        Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Padding="10"
+            Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                x:Name="openButton" 
+                Text="Открыть" 
+                HorizontalOptions="Fill" 
+                Margin="0,0,5,0" 
+                Clicked="openButton_Clicked"
+                IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=ItemSelected}"/>
+
+            <Button 
+                x:Name="removeButton" 
+                Text="Удалить" 
+                HorizontalOptions="Fill" 
+                Grid.Column="1" 
+                Margin="5,0,0,0" 
+                Clicked="removeButton_Clicked"
+                IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=ItemSelected}"/>
+        </Grid>
+    </Grid>
+</ContentPage>
